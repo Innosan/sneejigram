@@ -1,118 +1,73 @@
-# Nuxt Template
+# Orion - A Community-Driven Social Network
 
-This project is a Nuxt 3 application template with TypeScript support. It includes a basic navigation setup and some utility components.
+**Orion** is a modern social network platform designed for users to create and join communities, share posts, and engage in dynamic discussions. With features like collaborative threads, customizable communities, and a robust access control system, Orion aims to bring people together around shared interests and passions.
 
-# Project Structure
+## Features
 
-This project is a Nuxt 3 application template with TypeScript support. It includes a basic navigation setup, some utility components, and state management using Pinia.
+- **Community-Centric**: Create, join, and manage communities based on interests, hobbies, or professional topics.
+- **Dynamic Discussions**: Engage in threaded discussions with the ability to create sub-threads for deeper conversations.
+- **Access Control Matrix (ACM)**: Robust role-based permission system to manage community moderation and user access.
+- **Gamification**: Earn badges and rise through community leaderboards based on participation and contributions.
+- **Customizable Profiles**: Showcase your interests, posts, and community memberships on your personal profile.
+- **Community Challenges**: Participate in or create community-wide challenges and events to encourage engagement.
 
-## Folder Structure
+## Tech Stack
 
-- `assets/`: Contains static assets like stylesheets.
-	- `styles/`: Main styles directory.
-		- `css/`: Contains CSS files.
-		- `scss/`: Contains SCSS files.
-- `components/`: Contains Vue components.
-	- `layout/section/`: Components for layout sections.
-		- `PageSection.vue`: Component for page sections.
-		- `SectionTitle.vue`: Component for section titles.
-	- `navigation/`: Components for navigation.
-		- `BurgerNavigation.vue`: Component for burger menu navigation.
-		- `IconedNavigationLink.vue`: Component for navigation links with icons.
-		- `SidebarNavigation.vue`: Component for sidebar navigation.
-		- `TopNavigation.vue`: Component for top navigation.
-	- `theming/`: Components for theming.
-		- `ColorSwitch.vue`: Component for switching colors.
-		- `ThemeSwitch.vue`: Component for switching themes.
-	- `utility/`: Utility components.
-		- `Header.vue`: Header component.
-- `pages/`: Contains page components.
-	- `about.vue`: About page.
-	- `help.vue`: Help page.
-	- `index.vue`: Home page.
-- `public/`: Contains public assets.
-	- `favicon.ico`: Favicon for the application.
-	- `fonts/`: Contains font files.
-		- `Manrope-VariableFont_wght.ttf`: Manrope font.
-	- `images/`: Contains image files.
-		- `delete.ts`: Example image file.
-- `server/`: Contains server-side code.
-	- `tsconfig.json`: TypeScript configuration for the server.
-- `stores/`: Contains Pinia stores.
-	- `settings.ts`: Store for managing application settings.
-- `types/`: Contains TypeScript type definitions.
-	- `ui/`: UI-related types.
-		- `SectionSizes.ts`: Type definitions for section sizes.
-	- `utility/`: Utility types.
-		- `NavigationLink.ts`: Type definitions for navigation links.
-- `utils/`: Contains utility functions.
-	- `navigation.ts`: Utility functions for navigation.
+- **Frontend**: Nuxt.js
+- **Backend**: Nitro
+- **Database**: SQLite
+- **Authentication**: JWT (JSON Web Tokens)
+- **Authorization**: Access Control Matrix (ACM)
+  
+## Installation
 
-## Explanation
+1. Clone the repository:
 
-The project is structured to separate concerns and improve maintainability:
+    ```bash
+    git clone https://github.com/yourusername/Orion-Social-Network.git
+    ```
 
-- **Assets**: Static files like stylesheets are organized under `assets` to keep them separate from the application logic.
-- **Components**: Vue components are organized by their functionality (layout, navigation, theming, utility) to make it easier to find and manage them.
-- **Pages**: Each page of the application has its own file under `pages`, following the Nuxt.js convention.
-- **Public**: Public assets like fonts and images are placed under `public` to be served directly.
-- **Server**: Server-side code is kept under `server` to separate it from client-side code.
-- **Stores**: State management is handled using Pinia stores, which are placed under `stores`.
-- **Types**: TypeScript type definitions are organized under `types` to ensure type safety across the application.
-- **Utils**: Utility functions are placed under `utils` for reusability and better organization.
+2. Install dependencies:
 
-## Stores
+    ```bash
+    cd Orion-Social-Network
+    pnpm i
+    ```
 
-### `stores/settings.ts`
+3. Set up the environment variables:
 
-This file contains the settings store which manages the application's settings, such as the primary color. It uses Pinia for state management.
+    Create a `.env` file at the root of the project with the following values:
 
-## Setup
+    ```bash
+    JWT_SECRET=your_jwt_secret_key
+    DATABASE_URL=sqlite://db/orion.db
+    ```
 
-Make sure to install the dependencies:
+4. Run database migrations and seed data:
 
-```bash
-# npm
-npm install
-```
+    ```bash
+    pnpm run migrate
+    pnpm run seed
+    ```
 
-```bash
-# pnpm
-pnpm install
-```
+5. Start the development server:
 
-```bash
-# yarn
-yarn install
-```
+    ```bash
+    pnpm run dev
+    ```
 
-```bash
-# bun
-bun install
-```
+6. Access the app at `http://localhost:3000`.
 
-## Deployment
+## Development
 
-```bash
-# bun
-bun run dev
-```
+- **Contributing**: Contributions are welcome! Feel free to open an issue or submit a pull request to improve the platform.
+- **Issues**: For issues and bug reports, please visit the [issues page](https://github.com/yourusername/Orion-Social-Network/issues).
 
-```bash
-# npm
-npm run dev
-```
+## License
 
-```bash
-# pnpm
-pnpm run dev
-```
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-```bash
-# yarn
-yarn dev
-```
+## Future Enhancements
 
-Check out the [Deployment guide](https://nuxt.com/docs/getting-started/deployment) for more information.  
-License
-This project is licensed under the MIT License
+- **Mobile App**: Build a mobile-first experience with support for native apps.
+- **Advanced Moderation Tools**: Implement AI-powered moderation tools to automatically detect inappropriate content.
