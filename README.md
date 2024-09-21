@@ -1,6 +1,6 @@
-# Orion - A Community-Driven Social Network
+# Sneejigram - A Community-Driven Social Network
 
-**Orion** is a modern social network platform designed for users to create and join communities, share posts, and engage in dynamic discussions. With features like collaborative threads, customizable communities, and a robust access control system, Orion aims to bring people together around shared interests and passions.
+**Sneejigram** is a modern social network platform designed for users to create and join communities, share posts, and engage in dynamic discussions. With features like collaborative threads, customizable communities, and a robust access control system, Orion aims to bring people together around shared interests and passions.
 
 ## Features
 
@@ -24,39 +24,28 @@
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/Orion-Social-Network.git
+    git clone https://github.com/Innosan/sneejigram.git
     ```
 
 2. Install dependencies:
 
     ```bash
-    cd Orion-Social-Network
     pnpm i
     ```
 
-3. Set up the environment variables:
-
-    Create a `.env` file at the root of the project with the following values:
+3. Run database creation script (with seeding data):
 
     ```bash
-    JWT_SECRET=your_jwt_secret_key
-    DATABASE_URL=sqlite://db/orion.db
+    pnpm run setup-db
     ```
 
-4. Run database migrations and seed data:
-
-    ```bash
-    pnpm run migrate
-    pnpm run seed
-    ```
-
-5. Start the development server:
+4. Start the development server:
 
     ```bash
     pnpm run dev
     ```
 
-6. Access the app at `http://localhost:3000`.
+5. Access the app at `http://localhost:3000`.
 
 ## Development
 
@@ -65,7 +54,7 @@
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## Future Enhancements
 

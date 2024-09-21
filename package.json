@@ -1,25 +1,26 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxt/image": "^1.8.0",
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
-    "nuxt": "^3.13.0",
-    "sass": "^1.69.7",
-    "vue": "^3.4.10",
-    "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "@formkit/auto-animate": "^0.8.1",
-    "@nuxt/ui": "^2.12.0",
-    "@pinia/nuxt": "^0.5.1"
-  }
+	"name": "nuxt-app",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"setup-db": "node scripts/setup-db.cjs"
+	},
+	"devDependencies": {
+		"@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+		"better-sqlite3": "^11.3.0",
+		"nuxt": "^3.13.2",
+		"sass": "^1.69.7",
+		"vue": "^3.4.10",
+		"vue-router": "^4.2.5"
+	},
+	"dependencies": {
+		"@formkit/auto-animate": "^0.8.1",
+		"@nuxt/ui": "^2.12.0",
+		"@pinia/nuxt": "^0.5.1"
+	}
 }
