@@ -1,4 +1,5 @@
 import type { User } from "~/types/data/User";
+import type { Comment } from "~/types/data/Comment";
 
 export type Post = {
 	id: number;

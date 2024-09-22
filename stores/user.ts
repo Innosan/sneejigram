@@ -32,6 +32,7 @@ export const useUserStore = defineStore(
 		return {
 			currentUser,
 			signIn,
+			signOut,
 		};
 	},
 	{

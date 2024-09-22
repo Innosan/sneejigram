@@ -8,10 +8,20 @@ const userStore = useUserStore();
 </script>
 
 <template>
-	<Modal label="Войти" title="Вход">
+	<Modal v-if="userStore.currentUser.id === 0" label="Войти" title="Вход">
 		<template #body>
-			<UInput placeholder="Яйцеварис..." type="text" v-model="username" />
-			<UInput placeholder="Пароль" type="password" v-model="password" />
+			<TitledBlock title="Имя пользователя и пароль">
+				<UInput
+					placeholder="Яйцеварис..."
+					type="text"
+					v-model="username"
+				/>
+				<UInput
+					placeholder="Пароль"
+					type="password"
+					v-model="password"
+				/>
+			</TitledBlock>
 		</template>
 		<template #actions>
 			<UButton
@@ -22,5 +32,3 @@ const userStore = useUserStore();
 		</template>
 	</Modal>
 </template>
-
-<style scoped></style>
