@@ -1,7 +1,7 @@
 const Database = require("better-sqlite3");
 const path = require("path");
 
-const dbPath = path.resolve(__dirname, "../.data/db.sqlite");
+const dbPath = path.resolve(__dirname, "../.data/db.sqlite3");
 const db = new Database(dbPath);
 
 const createTables = `
@@ -9,7 +9,22 @@ CREATE TABLE IF NOT EXISTS user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT NOT NULL,
   email TEXT NOT NULL,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  role_id INTEGER,
+  FOREIGN KEY (role_id) REFERENCES role(id)
+);
+
+CREATE TABLE IF NOT EXISTS role (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS access_control_matrix (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  role_id INTEGER,
+  resource TEXT NOT NULL,
+  permission TEXT NOT NULL,
+  FOREIGN KEY (role_id) REFERENCES role(id)
 );
 
 CREATE TABLE IF NOT EXISTS post (
@@ -56,35 +71,7 @@ CREATE TABLE IF NOT EXISTS community_user (
 );
 `;
 
-const seedData = `
-INSERT INTO user (username, email, password) VALUES
-('user1', 'user1@example.com', 'password1'),
-('user2', 'user2@example.com', 'password2');
-
-INSERT INTO post (user, content) VALUES
-(1, 'Hello World!'),
-(2, 'This is a post.');
-
-INSERT INTO comment (user, post, content) VALUES
-(1, 1, 'Nice post!'),
-(2, 1, 'Thank you!');
-
-INSERT INTO \`like\` (user, post, status) VALUES
-(1, 1, 1),
-(2, 1, 1);
-
-INSERT INTO community (name, description) VALUES
-('Community1', 'This is the first community.'),
-('Community2', 'This is the second community.');
-
-INSERT INTO community_user (user, community, role) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(1, 2, 1);
-`;
-
 db.exec(createTables);
-db.exec(seedData);
 
 console.log("Database setup complete.");
 db.close();

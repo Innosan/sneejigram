@@ -4,19 +4,13 @@ export const navigation: NavigationLink[] = [
 	{
 		id: 1,
 		to: "/",
-		label: "Home",
-		icon: "i-heroicons-home-solid",
+		label: "Лента",
+		icon: "i-heroicons-chat-bubble-bottom-center-text-solid",
 	},
 	{
 		id: 2,
-		to: "/about",
-		label: "About",
-		icon: "i-heroicons-information-circle-solid",
-	},
-	{
-		id: 3,
-		to: "/help",
-		label: "Help",
+		to: "/communities",
+		label: "Сообщества",
 		icon: "i-heroicons-user-group-solid",
 	},
 ];

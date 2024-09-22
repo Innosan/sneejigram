@@ -8,7 +8,8 @@
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
-		"setup-db": "node scripts/setup-db.cjs"
+		"setup-db": "node scripts/setup-db.cjs",
+		"seed-db": "node scripts/seed-db.cjs"
 	},
 	"devDependencies": {
 		"@pinia-plugin-persistedstate/nuxt": "^1.2.0",

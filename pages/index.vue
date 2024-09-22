@@ -1,52 +1,38 @@
 <script setup lang="ts">
-import { useAnimeStore } from "~/stores/anime";
-import ImageCard from "~/components/layout/ImageCard.vue";
-const toast = useToast();
-
-const animeStore = useAnimeStore();
-animeStore.getArts(false);
-
-const name = ref("");
+import { CardSizes } from "~/types/ui/CardSizes.js";
 </script>
 
 <template>
-	<PageSection
-		title="Welcome to the homepage"
-		icon="i-heroicons-home-solid"
-		:is-divided="false"
-	>
-		<TitledBlock title="">
-			<Grid v-auto-animate>
-				<ImageCard
-					v-for="image in animeStore.nekoArts"
-					:key="image.url"
-					:alt="image.artist_name"
-					:url="image.url"
-				>
-					<div class="flex items-center gap-1">
-						<NuxtLink
-							class="font-bold text-lg"
-							:to="image.artist_href"
-							:external="true"
-							target="_blank"
-							>{{ image.artist_name }}</NuxtLink
-						>
-						•
-						<NuxtLink
-							:to="image.source_url"
-							:external="true"
-							target="_blank"
-							>Source</NuxtLink
-						>
+	<div class="w-full flex flex-col gap-8">
+		<div class="flex flex-col gap-2">
+			<UCard :ui="CardSizes.sm">
+				<p class="opacity-70 underline text-sm">Post creator</p>
+				<p>Post content</p>
+				<template #footer>
+					<div class="flex gap-4">
+						<UButton
+							icon="i-heroicons-heart-solid"
+							color="gray"
+							label="4"
+							variant="ghost"
+						/>
+
+						<UInput placeholder="Leave a comment" />
 					</div>
-				</ImageCard>
-				<UButton
-					label="Load more"
-					@click="animeStore.getArts(true)"
-					icon="i-heroicons-chevron-down"
-					class="col-span-full"
-				/>
-			</Grid>
-		</TitledBlock>
-	</PageSection>
+				</template>
+			</UCard>
+
+			<div class="flex flex-wrap gap-2">
+				<div
+					class="flex flex-col ring-1 ring-gray-200 dark:ring-gray-800 rounded-lg p-2"
+				>
+					<div class="flex gap-1 text-sm">
+						<p>Comment author</p>
+						<p class="opacity-70">Comment date</p>
+					</div>
+					<p class="font-bold">Comment content</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

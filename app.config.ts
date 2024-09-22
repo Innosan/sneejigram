@@ -1,5 +1,5 @@
 export default defineAppConfig({
-	appName: "Nuxt Template",
+	appName: "Sneejigram",
 
 	ui: {
 		primary: "red",
