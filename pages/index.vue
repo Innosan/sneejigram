@@ -1,7 +1,7 @@
 <script setup lang="ts">
+const postsStore = usePostsStore();
 const userStore = useUserStore();
 
-const postsStore = usePostsStore();
 postsStore.getPosts();
 postsStore.getTags();
 </script>

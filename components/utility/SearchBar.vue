@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { postSorts, SortOrder } from "~/types/ui/PostSort";
+import { postFilters } from "~/types/ui/PostFilter";
+
 const postsStore = usePostsStore();
+const searchStore = useSearchStore();
 
 const isFocused = ref(false);
 const isSearchExpanded = ref(false);
@@ -36,7 +40,7 @@ onUnmounted(() => {
 		class="transition-all flex-col expanded-search-bar flex gap-4 w-full"
 	>
 		<UInput
-			v-model="postsStore.query"
+			v-model="searchStore.query"
 			@focus="
 				() => {
 					isFocused = true;
@@ -48,14 +52,55 @@ onUnmounted(() => {
 			icon="i-heroicons-magnifying-glass"
 		/>
 
-		<div class="flex gap-2 select-none tags-card" v-if="isSearchExpanded">
-			<UBadge
-				class="cursor-pointer"
-				v-for="tag in postsStore.tags"
-				:color="postsStore.isTagSelected(tag) ? 'primary' : 'gray'"
-				@click="postsStore.selectTag(tag)"
-				:label="tag.title"
-			/>
+		<div v-if="isSearchExpanded">
+			<div class="flex gap-2 select-none tags-card">
+				<UBadge
+					class="cursor-pointer"
+					v-for="tag in postsStore.tags"
+					:color="searchStore.isTagSelected(tag) ? 'primary' : 'gray'"
+					@click="searchStore.selectTag(tag)"
+					:label="tag.title"
+				/>
+			</div>
+
+			<div class="flex gap-2 select-none">
+				<UBadge
+					class="cursor-pointer"
+					v-for="filter in postFilters"
+					:color="
+						searchStore.selectedFilter.id === filter.id
+							? 'primary'
+							: 'gray'
+					"
+					@click="searchStore.selectedFilter = filter"
+					:label="filter.title"
+				/>
+			</div>
+
+			<div class="flex gap-2 select-none">
+				<UBadge
+					class="cursor-pointer"
+					v-for="sort in postSorts"
+					:color="
+						searchStore.selectedSorts.some((s) => s.id === sort.id)
+							? 'primary'
+							: 'gray'
+					"
+					@click="searchStore.toggleSort(sort)"
+					:label="sort.title"
+				/>
+				<button
+					v-for="sort in searchStore.selectedSorts"
+					@click="searchStore.changeSortOrder(sort)"
+				>
+					{{ sort.title }}:
+					{{
+						sort.sortOrder === SortOrder.DESC
+							? "Descending"
+							: "Ascending"
+					}}
+				</button>
+			</div>
 		</div>
 	</div>
 </template>
