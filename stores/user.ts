@@ -10,7 +10,18 @@ export const useUserStore = defineStore(
 			username: string,
 			email: string,
 			password: string,
-		) => {};
+		) => {
+			const response = await $fetch("/api/auth/signUp", {
+				method: "POST",
+				body: { username, email, password },
+			});
+
+			if (response.status === 200) {
+				await signIn(username, password);
+			} else {
+				toast.add(response.body.notification);
+			}
+		};
 
 		const signIn = async (username: string, password: string) => {
 			const response = await $fetch("/api/auth/signIn", {
@@ -29,8 +40,26 @@ export const useUserStore = defineStore(
 			currentUser.value = guestUser;
 		};
 
+		const setLike = async (
+			user_id: number,
+			like_id: number,
+			post_id: number,
+			state: number,
+		) => {
+			const response = await $fetch("/api/posts/setLikeState", {
+				method: "POST",
+				body: {
+					like_id: like_id,
+					user_id: user_id,
+					post_id: post_id,
+					state: state,
+				},
+			});
+		};
+
 		return {
 			currentUser,
+			signUp,
 			signIn,
 			signOut,
 		};

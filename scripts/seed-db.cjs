@@ -18,6 +18,20 @@ INSERT INTO post (user, content) VALUES
 (1, 'Hello World!'),
 (2, 'This is a post.');
 
+INSERT INTO tag (title) VALUES
+('Tech'),
+('Humor'),
+('Education'),
+('Question'),
+('Bluff');
+
+INSERT INTO post_tag (post, tag) VALUES
+(1, 2),
+(1, 5),
+(1, 1),
+(2, 1),
+(2, 3);
+
 INSERT INTO comment (user, post, content) VALUES
 (1, 1, 'Nice post!'),
 (2, 1, 'Thank you!');

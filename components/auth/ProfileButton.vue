@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { CardSizes } from "~/types/ui/CardSizes";
+
 const userStore = useUserStore();
+const postsStore = usePostsStore();
 
 const items = [
 	[
 		{
-			label: "Ваш профиль",
+			label: userStore.currentUser.username,
 			icon: "i-heroicons-user-solid",
 		},
 		{
@@ -17,7 +20,7 @@ const items = [
 			label: "Создать пост",
 			icon: "i-heroicons-pencil-20-solid",
 			click: () => {
-				console.log("Edit");
+				isOpen.value = true;
 			},
 		},
 	],
@@ -31,6 +34,9 @@ const items = [
 		},
 	],
 ];
+
+const isOpen = ref(false);
+const content = ref("");
 </script>
 
 <template>
@@ -47,4 +53,41 @@ const items = [
 			color="gray"
 		/>
 	</UDropdown>
+
+	<UModal v-model="isOpen">
+		<UCard :ui="CardSizes.sm">
+			<template #header>
+				<p class="text-xl font-bold">Новый пост</p>
+			</template>
+
+			<UInput placeholder="Снял бы шляпу, но увы..." v-model="content" />
+
+			<template #footer>
+				<div class="flex gap-2">
+					<UButton
+						label="Опубликовать"
+						icon="i-heroicons-pencil-20-solid"
+						color="primary"
+						@click="
+							() => {
+								postsStore.createPost(
+									userStore.currentUser.id,
+									content,
+								);
+
+								isOpen = false;
+								content = '';
+							}
+						"
+					/>
+					<UButton
+						label="Закрыть"
+						icon="i-heroicons-x-mark"
+						color="gray"
+						@click="isOpen = false"
+					/>
+				</div>
+			</template>
+		</UCard>
+	</UModal>
 </template>

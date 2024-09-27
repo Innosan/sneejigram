@@ -60,3 +60,6 @@ This project is licensed under the MIT License.
 
 - **Mobile App**: Build a mobile-first experience with support for native apps.
 - **Advanced Moderation Tools**: Implement AI-powered moderation tools to automatically detect inappropriate content.
+
+## TODO:
+- Filtering system (highest-rated content, most active users, etc.)

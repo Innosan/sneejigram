@@ -4,12 +4,12 @@ import { CardSizes } from "~/types/ui/CardSizes";
 </script>
 
 <template>
-	<div class="flex flex-col gap-2">
+	<div class="flex w-full md:w-fit flex-col gap-2">
 		<div class="flex flex-col gap-2">
 			<ProfileButton />
-			<SignInModal />
+			<AuthModal />
 		</div>
-		<UCard :ui="CardSizes.sm" class="hidden md:block">
+		<UCard :ui="CardSizes.sm">
 			<template #header>
 				<UVerticalNavigation :links="navigation" />
 			</template>

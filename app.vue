@@ -11,7 +11,10 @@ appConfig.ui.primary = settingsStore.primaryColor;
 <template>
 	<div>
 		<Header />
-		<div class="page-container items-start pt-6" v-auto-animate>
+		<div
+			class="page-container flex-col md:flex-row items-start pt-6"
+			v-auto-animate
+		>
 			<SideNavigation />
 			<NuxtPage :key="route" />
 		</div>

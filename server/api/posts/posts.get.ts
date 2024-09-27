@@ -20,15 +20,20 @@ export default defineEventHandler(async (event) => {
       comment_user.username AS comment_user_username,
       comment_user.email AS comment_user_email,
       like.id AS like_id,
+      like.status AS like_status,
       like_user.id AS like_user_id,
       like_user.username AS like_user_username,
-      like_user.email AS like_user_email
+      like_user.email AS like_user_email,
+      tag.id AS tag_id,
+      tag.title AS tag_title
     FROM post
     JOIN user ON post.user = user.id
     LEFT JOIN comment ON comment.post = post.id
     LEFT JOIN user AS comment_user ON comment.user = comment_user.id
     LEFT JOIN like ON like.post = post.id
     LEFT JOIN user AS like_user ON like.user = like_user.id
+    LEFT JOIN post_tag ON post_tag.post = post.id
+    LEFT JOIN tag ON post_tag.tag = tag.id
   `;
 
 	if (posts?.length === 0) {
@@ -50,12 +55,13 @@ export default defineEventHandler(async (event) => {
 			postsMap.set(row.post_id, {
 				id: row.post_id,
 				content: row.post_content,
-				likes: 0,
+				likes: [],
 				author: {
 					id: row.user_id,
 					username: row.user_username,
 				},
 				comments: [],
+				tags: [],
 			});
 		}
 
@@ -82,7 +88,22 @@ export default defineEventHandler(async (event) => {
 
 		if (row.like_id && !post.likeIds.has(row.like_id)) {
 			post.likeIds.add(row.like_id);
-			post.likes += 1;
+			post.likes.push({
+				id: row.like_id,
+				user: {
+					id: row.like_user_id,
+					username: row.like_user_username,
+				},
+				post_id: row.post_id,
+				status: row.like_status,
+			});
+		}
+
+		if (row.tag_id && !post.tags.some((tag) => tag.id === row.tag_id)) {
+			post.tags.push({
+				id: row.tag_id,
+				title: row.tag_title,
+			});
 		}
 	});
 
